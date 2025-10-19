@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
+  <meta name="theme-color" content="#2c3e50"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+  <title>Certificates - Delhi Trading Company</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body>
+  <!-- Header copied from index.html -->
+  <header class="header fixed-header">
+    <div class="container header-top-flex tighter-header">
+      <div class="logo-wrap">
+        <img src="logo.jpg" alt="Logo" class="logo-img-large" />
+        <p class="since">Since 1980</p>
+      </div>
+      <div class="firm-name-wrap">
+        <h1 class="firm-name-large">Delhi Trading Company</h1>
+      </div>
+      <div class="centered-info pushed-right">
+        <p><i class="fas fa-map-marker-alt"></i> 2A/5, B.P., N.I.T.<br />FARIDABAD - 121001, HARYANA</p>
+      </div>
+      <div class="contact-info pushed-right">
+        <p><i class="fas fa-phone"></i> +(91) 9811009503<br /><i class="fab fa-whatsapp"></i> +(91) 8178008360</p>
+        <p><i class="fas fa-envelope"></i> delhitrading@gmail.com</p>
+      </div>
+    </div>
+    <nav class="navbar">
+      <div class="nav-toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#products">Products</a></li>
+        <li><a href="index.html#distributorship">Distributorship</a></li>
+        <li><a href="pricelist.html">Price List</a></li>
+        <li><a href="certificates.html">Certificates</a></li>
+        <li><a href="index.html#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Content -->
+  <section class="section scroll-section certificates-section">
+  <div class="container">
+    <h2>Certificates</h2>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <img src="minilec_certificate.jpg" alt="Minilec Certificate" onclick="openPopup(this)">
+      </div>
+      <div class="cert-card">
+        <img src="bch_certificate.jpg" alt="BCH Certificate" onclick="openPopup(this)">
+      </div>
+      <div class="cert-card">
+        <img src="rishabh_certificate.jpg" alt="Rishabh Certificate" onclick="openPopup(this)">
+      </div>
+      <div class="cert-card">
+        <img src="indfos_certificate.jpg" alt="Indfos Certificate" onclick="openPopup(this)">
+      </div>
+      <div class="cert-card">
+        <img src="elmeasure_certificate.jpg" alt="Elmeasure Certificate" onclick="openPopup(this)">
+      </div>
+      <div class="cert-card">
+        <img src="dowells_certificate.jpg" alt="Dowells Certificate" onclick="openPopup(this)">
+      </div>
+      <div class="cert-card">
+        <img src="klipco_certificate.jpg" alt="Klipco Certificate" onclick="openPopup(this)">
+      </div>
+      <div class="cert-card">
+        <img src="esbee_certificate.jpg" alt="Esbee Certificate" onclick="openPopup(this)">
+      </div>
+      <div class="cert-card">
+        <img src="elmex_certificate.jpg" alt="Elmex Certificate" onclick="openPopup(this)">
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup Modal -->
+  <div id="cert-popup" class="cert-popup" onclick="closePopup()">
+    <img id="popup-img" src="" alt="Certificate Enlarged">
+  </div>
+</section>
+
+<script>
+  function openPopup(img) {
+    const popup = document.getElementById("cert-popup");
+    const popupImg = document.getElementById("popup-img");
+    popupImg.src = img.src;
+    popup.style.display = "flex";
+  }
+
+  function closePopup() {
+    document.getElementById("cert-popup").style.display = "none";
+  }
+
+  // ✅ Close popup on ESC key
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+      closePopup();
+    }
+  });
+
+  // Mobile Navigation Toggle
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      navMenu.classList.toggle('active');
+      navToggle.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+      });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+      }
+    });
+
+    // Close mobile menu on window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 767) {
+        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+      }
+    });
+  }
+</script>
+
+
+</body>
+</html>
