@@ -1,8 +1,8 @@
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
+  <meta name="viewport" content="width=1200, initial-scale=0.5, user-scalable=yes"/>
   <meta name="theme-color" content="#2c3e50"/>
   <meta name="mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -21,14 +21,6 @@
       </div>
       <div class="firm-name-wrap">
         <h1 class="firm-name-large">Delhi Trading Company</h1>
-      </div>
-      <div class="centered-info pushed-right">
-      <p>
-        <i class="fas fa-map-marker-alt"></i>
-        <a href="https://www.google.com/maps/place/Delhi+Trading+Company/@28.3796402,77.2975153,19.96z/data=!4m6!3m5!1s0x390cdc22cf8d5325:0xb5330b1625bbbf29!8m2!3d28.379718!4d77.2973505!16s%2Fg%2F1tfzq8z0?entry=ttu" target="_blank" style="color: white; text-decoration: underline;">
-          2A/5, B.P., N.I.T.<br />FARIDABAD - 121001, HARYANA
-        </a>
-      </p>
       </div>
       <div class="contact-info pushed-right">
         <p><i class="fas fa-phone"></i> +(91) 9811009503<br /><i class="fab fa-whatsapp"></i> +(91) 8178008360</p>
@@ -65,7 +57,6 @@
       <img src="pic4.jpg" alt="Pic 4" class="slider-img" />
       <img src="pic5.jpg" alt="Pic 5" class="slider-img" />
       <img src="pic6.jpg" alt="Pic 6" class="slider-img" />
-
     </div>
     <button class="slider-btn right" onclick="moveSlide(1)">❯</button>
   </div>
@@ -578,10 +569,15 @@
   </a>
 </p>
 
-
       <p><strong>Email:</strong> delhitrading@gmail.com</p>
       <p><strong>Contact:</strong> +(91) 9811009503</p>
       <p><strong>Whatsapp:</strong> +(91) 8178008360</p>
+      <p>
+        <i class="fas fa-map-marker-alt"></i>
+        <a href="https://www.google.com/maps/place/Delhi+Trading+Company/@28.3796402,77.2975153,19.96z/data=!4m6!3m5!1s0x390cdc22cf8d5325:0xb5330b1625bbbf29!8m2!3d28.379718!4d77.2973505!16s%2Fg%2F1tfzq8z0?entry=ttu" target="_blank" style="color: inherit; text-decoration: underline;">
+          2A/5, B.P., N.I.T., FARIDABAD - 121001, HARYANA
+        </a>
+      </p>
     </div>
   </section>
 
@@ -599,24 +595,19 @@ let slideIndex = 0;
 const track = document.querySelector('.slider-track');
 const slides = document.querySelectorAll('.slider-img');
 const totalSlides = slides.length;
-const intervalTime = 3000; // 3 seconds constant interval
+const intervalTime = 3000;
 let autoScroll;
 
-// --- Core function ---
 function showSlide(index) {
-  // Wrap-around logic
   if (index >= totalSlides) slideIndex = 0;
   else if (index < 0) slideIndex = totalSlides - 1;
   else slideIndex = index;
-
-  // Smooth transform
   track.style.transition = 'transform 0.6s ease-in-out';
   track.style.transform = `translateX(-${slideIndex * 100}%)`;
 }
 
-// --- Auto-scroll ---
 function startAutoScroll() {
-  stopAutoScroll(); // prevent duplicates
+  stopAutoScroll();
   autoScroll = setInterval(() => {
     showSlide(slideIndex + 1);
   }, intervalTime);
@@ -626,41 +617,33 @@ function stopAutoScroll() {
   if (autoScroll) clearInterval(autoScroll);
 }
 
-// --- Manual control ---
 function moveSlide(direction) {
   stopAutoScroll();
   showSlide(slideIndex + direction);
-  startAutoScroll(); // restart timer after manual click
+  startAutoScroll();
 }
 
-// --- Pause on hover ---
 const sliderContainer = document.querySelector('.slider-container');
 sliderContainer.addEventListener('mouseenter', stopAutoScroll);
 sliderContainer.addEventListener('mouseleave', startAutoScroll);
 
-// --- Initialize ---
 showSlide(slideIndex);
 startAutoScroll();
 
-  // Fade-in on Scroll
-  const fadeSections = document.querySelectorAll('.fade-section');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.2 });
-  fadeSections.forEach(sec => observer.observe(sec));
-
-  // Scroll-to-top Button
-  const scrollBtn = document.getElementById('scrollTopBtn');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) scrollBtn.style.display = 'flex';
-    else scrollBtn.style.display = 'none';
+const fadeSections = document.querySelectorAll('.fade-section');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
   });
-  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+}, { threshold: 0.2 });
+fadeSections.forEach(sec => observer.observe(sec));
 
-  // Remove duplicate interval - already handled by startAutoScroll()
-
+const scrollBtn = document.getElementById('scrollTopBtn');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) scrollBtn.style.display = 'flex';
+  else scrollBtn.style.display = 'none';
+});
+scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   </script>
 </body>
 </html>
